@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 function Header(params) {
   return (
@@ -7,7 +7,7 @@ function Header(params) {
         <h1>{params.text}</h1>
       </header>
     </>
-  );
+  )
 }
 
-export default Header;
+export default Header

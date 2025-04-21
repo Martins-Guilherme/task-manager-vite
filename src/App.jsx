@@ -1,7 +1,7 @@
-import Tasks from "./components/Tasks.jsx";
-import Header from "./components/Header.jsx";
+import Tasks from './components/Tasks.jsx'
+import Header from './components/Header.jsx'
 
-import "./index.css";
+import './index.css'
 
 function App() {
   return (
@@ -9,7 +9,7 @@ function App() {
       <Header text="Home" />
       <Tasks />
     </>
-  );
+  )
 }
 
-export default App;
+export default App

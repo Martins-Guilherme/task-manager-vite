@@ -1,16 +1,13 @@
-import { useState, useEffect } from "react";
-import Header from "./Header";
+import { useState } from 'react'
+import Header from './Header'
 
 function Tasks() {
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState('')
 
-  const [message, setMessage] = useState([
-    "Ola mundo!",
-    "FSW, muito louco!",
-  ]);
+  const [message, setMessage] = useState(['Ola mundo!', 'FSW, muito louco!'])
 
   function handleButtonClick() {
-    setMessage([...message, inputValue]);
+    setMessage([...message, inputValue])
   }
 
   return (
@@ -35,7 +32,7 @@ function Tasks() {
         ))}
       </ul>
     </div>
-  );
+  )
 }
 
-export default Tasks;
+export default Tasks

@@ -10,4 +10,4 @@
 
 - Ferramenta para padronizar a formatação de código
 
-# Padronizar o código ementre vários membros da equipe
+# Padronizar o código entre vários membros da equipe

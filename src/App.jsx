@@ -1,11 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
+import Sidebar from './components/Sidebar'
 
 function App() {
   return (
     <>
-      <h1 className="p-6">Ola mundo</h1>
+      <Sidebar />
     </>
   )
 }

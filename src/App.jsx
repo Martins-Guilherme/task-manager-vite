@@ -1,13 +1,11 @@
-import Tasks from './components/Tasks.jsx'
-import Header from './components/Header.jsx'
-
+import React from 'react'
+import ReactDOM from 'react-dom'
 import './index.css'
 
 function App() {
   return (
     <>
-      <Header text="Home" />
-      <Tasks />
+      <h1 className="p-6">Ola mundo</h1>
     </>
   )
 }

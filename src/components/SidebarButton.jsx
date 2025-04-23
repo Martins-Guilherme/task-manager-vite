@@ -11,7 +11,7 @@ function SidebarButton({ children, variant }) {
     <>
       <a
         href="#"
-        className={`rounded-lg px-6 py-3 text-[#35383E] ${getVariantClasses()}`}
+        className={`flex items-center gap-2 rounded-lg px-6 py-3 text-[#35383E] ${getVariantClasses()}`}
       >
         {children}
       </a>

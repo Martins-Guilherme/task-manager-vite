@@ -1,36 +1,29 @@
-import { useState } from 'react'
-import Header from './Header'
+import Button from './Button'
+import AddIcon from '../assets/icon/add.svg?react'
+import TrashIcon from '../assets/icon/trash.svg?react'
 
-function Tasks() {
-  const [inputValue, setInputValue] = useState('')
-
-  const [message, setMessage] = useState(['Ola mundo!', 'FSW, muito louco!'])
-
-  function handleButtonClick() {
-    setMessage([...message, inputValue])
-  }
-
+const Tasks = () => {
   return (
-    <div className="app">
-      <input
-        className="input"
-        type="text"
-        value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
-      />
-      <button className="button" onClick={handleButtonClick}>
-        Adicionar
-      </button>
-      <Header>
-        <h1>- Mensagens -</h1>
-      </Header>
-      <ul className="messages">
-        {message.map((item, index) => (
-          <li key={index}>
-            {index + 1} - {item}
-          </li>
-        ))}
-      </ul>
+    <div className="w-full px-8 py-16">
+      <div className="flex w-full justify-between">
+        <div>
+          <span className="text-xs font-semibold text-[#00adb5]">
+            Minhas tarefas
+          </span>
+          <h2 className="text-xl font-semibold">Minhas tarefas</h2>
+        </div>
+
+        <div className="flex items-center gap-3">
+          <Button variant="ghost">
+            <p>Adicionar tarefa</p>
+            <AddIcon />
+          </Button>
+          <Button>
+            <p>Limpar tarefas</p>
+            <TrashIcon />
+          </Button>
+        </div>
+      </div>
     </div>
   )
 }

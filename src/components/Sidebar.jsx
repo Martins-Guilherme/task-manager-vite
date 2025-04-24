@@ -16,11 +16,11 @@ function Sidebar() {
 
         <div className="flex flex-col p-2">
           <SidebarButton variant="unselected">
-            <HomeIcon className="text-red-400" />
+            <HomeIcon />
             Início
           </SidebarButton>
           <SidebarButton variant="selected">
-            <ListChecks className="text-red-400" />
+            <ListChecks />
             Minhas tarefas
           </SidebarButton>
         </div>

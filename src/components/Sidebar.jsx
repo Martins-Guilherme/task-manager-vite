@@ -9,7 +9,7 @@ function Sidebar() {
         <div className="space-y-6 px-8 py-6">
           <h1 className="text-xl font-semibold text-[#00adb5]">Task manager</h1>
           <p>
-            Simples{' '}
+            Um Simples{' '}
             <span className="text-[#00adb5]">organizador de tarefas</span>
           </p>
         </div>

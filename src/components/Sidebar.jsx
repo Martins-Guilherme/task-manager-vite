@@ -5,7 +5,7 @@ import ListChecks from '../assets/icon/list-checks.svg?react'
 function Sidebar() {
   return (
     <>
-      <div className="h-screen w-64 bg-white">
+      <div className="h-screen w-72 bg-white">
         <div className="space-y-6 px-8 py-6">
           <h1 className="text-xl font-semibold text-[#00adb5]">Task manager</h1>
           <p>
@@ -14,7 +14,7 @@ function Sidebar() {
           </p>
         </div>
 
-        <div className="flex flex-col p-2">
+        <div className="ml-8 flex flex-col p-2">
           <SidebarButton variant="unselected">
             <HomeIcon />
             Início

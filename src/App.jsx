@@ -7,7 +7,7 @@ import Header from './components/Header'
 
 function App() {
   return (
-    <div className="flex gap-9">
+    <div className="flex">
       <Sidebar />
       <Tasks />
     </div>

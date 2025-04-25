@@ -16,6 +16,13 @@ const Tasks = () => {
   const afternoonTasks = tasks.filter((task) => task.time === 'afternoon')
   const eveningTasks = tasks.filter((task) => task.time === 'evening')
 
+  const handleTaskDeleteClick = (taskId) => {
+    const newTasks = tasks.filter((task) => {
+      return task.id != taskId
+    })
+    setTasks(newTasks)
+  }
+
   const handleTaskChekboxClick = (taskId) => {
     const newTask = tasks.map((task) => {
       if (task.id != taskId) {
@@ -66,7 +73,8 @@ const Tasks = () => {
               <TaskItem
                 key={task.id}
                 task={task}
-                handleTaskChekboxClick={handleTaskChekboxClick}
+                handleChekboxClick={handleTaskChekboxClick}
+                handleDeleteClick={handleTaskDeleteClick}
               />
             )
           })}
@@ -79,7 +87,8 @@ const Tasks = () => {
               <TaskItem
                 key={task.id}
                 task={task}
-                handleTaskChekboxClick={handleTaskChekboxClick}
+                handleChekboxClick={handleTaskChekboxClick}
+                handleDeleteClick={handleTaskDeleteClick}
               />
             )
           })}
@@ -92,7 +101,8 @@ const Tasks = () => {
               <TaskItem
                 key={task.id}
                 task={task}
-                handleTaskChekboxClick={handleTaskChekboxClick}
+                handleChekboxClick={handleTaskChekboxClick}
+                handleDeleteClick={handleTaskDeleteClick}
               />
             )
           })}

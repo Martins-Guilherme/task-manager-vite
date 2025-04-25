@@ -2,7 +2,7 @@ import CheckIcon from '../assets/icon/check.svg?react'
 import LoaderCircle from '../assets/icon/loader-circle.svg?react'
 import DetailsIcon from '../assets/icon/detailsIcon.svg?react'
 
-const TaskItem = ({ task }) => {
+const TaskItem = ({ task, handleTaskChekboxClick }) => {
   const getStatusClasses = () => {
     if (task.status === 'done') {
       return 'bg-[#00adb5] text-[#00adb5]'
@@ -17,7 +17,7 @@ const TaskItem = ({ task }) => {
   }
   return (
     <div
-      className={`item-center rounde-lg flex justify-between gap-2 bg-opacity-10 px-4 py-3 text-sm ${getStatusClasses()}`}
+      className={`item-center rounde-lg flex justify-between gap-2 bg-opacity-10 px-4 py-3 text-sm transition ${getStatusClasses()}`}
     >
       <div className="flex items-center gap-2">
         <label
@@ -27,6 +27,7 @@ const TaskItem = ({ task }) => {
             type="checkbox"
             checked={task.status === 'done'}
             className="absolute h-full w-full cursor-pointer opacity-0"
+            onChange={() => handleTaskChekboxClick(task.id)}
           />
 
           {task.status === 'done' && <CheckIcon />}

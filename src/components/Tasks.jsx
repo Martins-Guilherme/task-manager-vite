@@ -9,11 +9,13 @@ import {
   TrashIcon,
 } from '../assets/icon'
 import TASKS from '../constants/tasks'
+import AddTaskDialog from './AddTaskDialog'
 import Button from './Button'
 import TaskItem from './TaskItem'
 import TaskSeparator from './TasksSeparator'
 
 const Tasks = () => {
+  const [addTaskDialogIsOpen, setAddTaskDialogIsOpen] = useState(false)
   const [tasks, setTasks] = useState(TASKS)
 
   const morningTasks = tasks.filter((task) => task.time === 'morning')
@@ -62,13 +64,15 @@ const Tasks = () => {
 
         <div className="flex items-center gap-3">
           <Button variant="ghost">
-            <p>Adicionar tarefa</p>
-            <AddIcon />
-          </Button>
-          <Button>
             <p>Limpar tarefas</p>
             <TrashIcon />
           </Button>
+          <Button onClick={() => setAddTaskDialogIsOpen(true)}>
+            <p>Adicionar tarefa</p>
+            <AddIcon />
+          </Button>
+
+          <AddTaskDialog isOpen={addTaskDialogIsOpen} />
         </div>
       </div>
 

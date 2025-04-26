@@ -1,6 +1,5 @@
 import SidebarButton from './SidebarButton'
-import HomeIcon from '../assets/icon/home.svg?react'
-import ListChecks from '../assets/icon/list-checks.svg?react'
+import { HomeIcon, ListChecks } from '../assets/icon/'
 
 function Sidebar() {
   return (

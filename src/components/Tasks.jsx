@@ -1,9 +1,11 @@
 import Button from './Button'
-import AddIcon from '../assets/icon/add.svg?react'
-import TrashIcon from '../assets/icon/trash.svg?react'
-import SunIcon from '../assets/icon/sun.svg?react'
-import MoonIcon from '../assets/icon/moon.svg?react'
-import CloudSunIcon from '../assets/icon/cloud-sun.svg?react'
+import {
+  TrashIcon,
+  AddIcon,
+  SunIcon,
+  CloudSunIcon,
+  MoonIcon,
+} from '../assets/icon'
 import TaskSeparator from './TasksSeparator'
 import { useState } from 'react'
 import TASKS from '../constants/tasks'

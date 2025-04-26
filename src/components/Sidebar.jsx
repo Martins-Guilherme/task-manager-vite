@@ -1,5 +1,5 @@
-import SidebarButton from './SidebarButton'
 import { HomeIcon, ListChecks } from '../assets/icon/'
+import SidebarButton from './SidebarButton'
 
 function Sidebar() {
   return (

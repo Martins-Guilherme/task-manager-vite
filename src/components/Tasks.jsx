@@ -22,6 +22,10 @@ const Tasks = () => {
   const afternoonTasks = tasks.filter((task) => task.time === 'afternoon')
   const eveningTasks = tasks.filter((task) => task.time === 'evening')
 
+  const handleDialogClose = () => {
+    setAddTaskDialogIsOpen(false)
+  }
+
   const handleTaskDeleteClick = (taskId) => {
     const newTasks = tasks.filter((task) => {
       return task.id != taskId
@@ -67,12 +71,17 @@ const Tasks = () => {
             <p>Limpar tarefas</p>
             <TrashIcon />
           </Button>
+
+          {/* Temos duas formas de setar um estado, uma por função e outrra diretamente na kinha di código. */}
           <Button onClick={() => setAddTaskDialogIsOpen(true)}>
             <p>Adicionar tarefa</p>
             <AddIcon />
           </Button>
 
-          <AddTaskDialog isOpen={addTaskDialogIsOpen} />
+          <AddTaskDialog
+            isOpen={addTaskDialogIsOpen}
+            handleClose={handleDialogClose}
+          />
         </div>
       </div>
 

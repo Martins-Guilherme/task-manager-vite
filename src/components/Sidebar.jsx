@@ -4,12 +4,14 @@ import SidebarButton from './SidebarButton'
 function Sidebar() {
   return (
     <>
-      <div className="h-screen w-72 bg-white">
+      <div className="bg-white h-screen w-72">
         <div className="space-y-6 px-8 py-6">
-          <h1 className="text-xl font-semibold text-[#00adb5]">Task manager</h1>
+          <h1 className="text-xl font-semibold text-brand-primary">
+            Task manager
+          </h1>
           <p>
             Um Simples{' '}
-            <span className="text-[#00adb5]">organizador de tarefas</span>
+            <span className="text-brand-primary">organizador de tarefas</span>
           </p>
         </div>
 

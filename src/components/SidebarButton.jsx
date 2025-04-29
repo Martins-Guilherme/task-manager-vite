@@ -1,17 +1,17 @@
 function SidebarButton({ children, variant }) {
   const getVariantClasses = () => {
     if (variant == 'unselected') {
-      return 'text-[#35383E]'
+      return 'text-brand-dark-blue'
     }
     if (variant == 'selected') {
-      return 'bg-[#E6F7F8] text-[#00ADB5]'
+      return 'bg-[#E6F7F8] text-brand-primary'
     }
   }
   return (
     <>
       <a
         href="#"
-        className={`flex items-center gap-2 rounded-lg px-6 py-3 text-[#35383E] ${getVariantClasses()}`}
+        className={`flex items-center gap-2 rounded-lg px-6 py-3 text-brand-dark-blue ${getVariantClasses()}`}
       >
         {children}
       </a>
@@ -20,12 +20,3 @@ function SidebarButton({ children, variant }) {
 }
 
 export default SidebarButton
-
-{
-  /* <a
-            href="/tasks"
-            className="rounded-lg bg-[#E6F7F8] px-6 py-3 text-[#00ADB5]"
-          >
-            Minhas tarefas
-          </a> */
-}

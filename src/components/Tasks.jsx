@@ -72,13 +72,13 @@ const Tasks = () => {
         </div>
 
         <div className="flex items-center gap-3">
-          <Button variant="ghost">
+          <Button color="ghost">
             <p>Limpar tarefas</p>
             <TrashIcon />
           </Button>
 
           {/* Temos duas formas de setar um estado, uma por função e outrra diretamente na kinha di código. */}
-          <Button onClick={() => setAddTaskDialogIsOpen(true)}>
+          <Button color="primary" onClick={() => setAddTaskDialogIsOpen(true)}>
             <p>Adicionar tarefa</p>
             <AddIcon />
           </Button>

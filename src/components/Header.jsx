@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import React from 'react'
 
 function Header(params) {
@@ -8,6 +9,10 @@ function Header(params) {
       </header>
     </>
   )
+}
+
+Header.propTypes = {
+  children: PropTypes.node.isRequired,
 }
 
 export default Header

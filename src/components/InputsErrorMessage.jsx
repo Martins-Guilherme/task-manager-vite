@@ -1,7 +1,11 @@
 import PropTypes from 'prop-types'
 
 const InputErrorMessage = ({ children }) => {
-  return <span className="text-left text-xs text-brand-danger">{children}</span>
+  return (
+    <>
+      <span className="text-left text-xs text-brand-danger">{children}</span>
+    </>
+  )
 }
 
 InputErrorMessage.propTypes = {

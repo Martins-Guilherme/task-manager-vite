@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import { tv } from 'tailwind-variants'
 
 function SidebarButton({ children, color }) {
@@ -17,6 +18,11 @@ function SidebarButton({ children, color }) {
       </a>
     </>
   )
+}
+
+SidebarButton.propTypes = {
+  children: PropTypes.node.isRequired,
+  color: PropTypes.oneOf(['selected', 'unselected']),
 }
 
 export default SidebarButton

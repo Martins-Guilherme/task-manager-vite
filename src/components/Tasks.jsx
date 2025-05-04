@@ -40,7 +40,13 @@ const Tasks = () => {
     setAddTaskDialogIsOpen(false)
   }
 
-  const handleTaskDeleteClick = (taskId) => {
+  const handleTaskDeleteClick = async (taskId) => {
+    const response = await fetch(`http://localhost:3000/tasks/${taskId}`, {
+      method: 'DELETE',
+    })
+    if (!response.ok) {
+      return toast.error('Erro ao remover a tarefa, tente novamente.')
+    }
     const newTasks = tasks.filter((task) => {
       return task.id != taskId
     })
@@ -72,7 +78,7 @@ const Tasks = () => {
 
   const handleAddTaskSubmit = async (task) => {
     // Chamar a  API para atualizar os dados de acordo com o que foi adicionado na tarefa.
-    const response = await fetch('http:localhost:3000/tasks', {
+    const response = await fetch('http://localhost:3000/tasks/', {
       method: 'POST',
       body: JSON.stringify(task),
     })

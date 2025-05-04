@@ -1,38 +1,24 @@
 {
   "tasks": [
     {
-      "id": "1",
-      "title": "Estudar FSW",
-      "description": "Estudar para a prova FSW",
-      "time": "morning",
-      "status": "done"
-    },
-    {
-      "id": "2",
-      "title": "Estudar React",
-      "description": "Estudar para a prova React",
+      "id": "3ce00588-0b86-4126-aedf-edd4aca02771",
+      "title": "particular",
       "time": "afternoon",
-      "status": "in_progress"
-    },
-    {
-      "id": "3",
-      "title": "Estudar Next",
-      "description": "Estudar para a prova Next",
-      "time": "morning",
-      "status": "done"
-    },
-    {
-      "id": "5",
-      "title": "Estudar Node",
-      "description": "Estudar para a prova Node",
-      "time": "afternoon",
+      "description": "minha pirola",
       "status": "not_started"
     },
     {
-      "id": "6",
-      "title": "Estudar Python",
-      "description": "Estudar para a prova Python",
-      "time": "evening",
+      "id": "6139a52f-ed1d-413b-a6e6-7234c31528dc",
+      "title": "casa de festa ",
+      "time": "morning",
+      "description": "uma hora dessas",
+      "status": "not_started"
+    },
+    {
+      "id": "70928230-56d7-4b3a-bd50-4ba2e0c9effe",
+      "title": "Chupar um cu bem novinho",
+      "time": "afternoon",
+      "description": "um dia desses",
       "status": "not_started"
     }
   ]

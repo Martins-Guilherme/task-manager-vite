@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { toast } from 'sonner'
 
 import {
@@ -8,7 +8,6 @@ import {
   SunIcon,
   TrashIcon,
 } from '../assets/icon'
-import TASKS from '../constants/tasks'
 import AddTaskDialog from './AddTaskDialog'
 import Button from './Button'
 import TaskItem from './TaskItem'
@@ -16,7 +15,22 @@ import TaskSeparator from './TasksSeparator'
 
 const Tasks = () => {
   const [addTaskDialogIsOpen, setAddTaskDialogIsOpen] = useState()
-  const [tasks, setTasks] = useState(TASKS)
+  const [tasks, setTasks] = useState([])
+
+  useEffect(() => {
+    // Pegando os dados da API, e atualizar o state tasks em modo asincrono, porem não pode ser
+    // feito dentro do metodo useEffect, por isso é criado uma nova função sendo a função assincrona.
+    const fetchTasks = async () => {
+      const response = await fetch('http://localhost:3000/tasks', {
+        method: 'GET',
+      })
+      const tasks = await response.json()
+      // Apos pegar os dados é atualizado o estado setTasks.
+      setTasks(tasks)
+    }
+    // Executando a função assincrona
+    fetchTasks()
+  }, [])
 
   const morningTasks = tasks.filter((task) => task.time === 'morning')
   const afternoonTasks = tasks.filter((task) => task.time === 'afternoon')

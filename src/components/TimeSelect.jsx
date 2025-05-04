@@ -18,14 +18,14 @@ const TimeSelect = forwardRef(({ errorMessage, ...props }, ref) => {
         <option value="afternoon">Tarde</option>
         <option value="evening">Noite</option>
       </select>
-      {errorMessage && <InputErrorMessage errormessage={errorMessage} />}
+      {errorMessage && <InputErrorMessage>{errorMessage}</InputErrorMessage>}
     </div>
   )
 })
 
 TimeSelect.displayName = 'TimeSelect'
 TimeSelect.propTypes = {
-  errormessage: PropTypes.string,
+  errorMessage: PropTypes.string,
 }
 
 export default TimeSelect

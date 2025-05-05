@@ -3,8 +3,8 @@ import { tv } from 'tailwind-variants'
 
 const Button = ({
   children,
-  size = 'primary',
-  color = 'small',
+  color = 'primary',
+  size = 'small',
   className,
   ...rest
 }) => {
@@ -15,6 +15,7 @@ const Button = ({
         primary: 'text-white bg-brand-primary',
         secondary: 'bg-brand-light-gray text-brand-dark-blue',
         ghost: 'bg-transparent text-brand-dark-gray',
+        danger: 'bg-brand-danger text-brand-white',
       },
       size: {
         small: 'py-1 text-xs',
@@ -43,7 +44,7 @@ const Button = ({
 Button.propTypes = {
   children: PropTypes.node.isRequired,
   size: PropTypes.oneOf(['small', 'large']),
-  color: PropTypes.oneOf(['primary', 'secondary', 'ghost']),
+  color: PropTypes.oneOf(['primary', 'secondary', 'ghost', 'danger']),
   disabled: PropTypes.bool,
   className: PropTypes.string,
 }

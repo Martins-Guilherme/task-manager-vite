@@ -4,7 +4,7 @@ import SidebarButton from './SidebarButton'
 function Sidebar() {
   return (
     <>
-      <div className="bg-white h-screen w-72">
+      <div className="bg-white h-screen w-72 bg-brand-white">
         <div className="space-y-6 px-8 py-6">
           <h1 className="text-xl font-semibold text-brand-primary">
             Task manager

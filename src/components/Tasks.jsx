@@ -95,7 +95,7 @@ const Tasks = () => {
             <TrashIcon />
           </Button>
 
-          {/* Temos duas formas de setar um estado, uma por função e outrra diretamente na kinha di código. */}
+          {/* Temos duas formas de setar um estado, uma por função e outra diretamente na linha de código. */}
           <Button color="primary" onClick={() => setAddTaskDialogIsOpen(true)}>
             <p>Adicionar tarefa</p>
             <AddIcon />
@@ -114,6 +114,11 @@ const Tasks = () => {
       <div className="bg-white rounded-xl p-6">
         <div className="space-y-3">
           <TaskSeparator tittle="Manhã" icon={<SunIcon />} />
+          {morningTasks.length === 0 && (
+            <p className="text-sm text-brand-text-gray">
+              Nenhuma tarefa cadastrada para o período da manhã.
+            </p>
+          )}
           {morningTasks.map((task) => {
             return (
               <TaskItem
@@ -128,6 +133,11 @@ const Tasks = () => {
 
         <div className="my-6 space-y-3">
           <TaskSeparator tittle="Tarde" icon={<CloudSunIcon />} />
+          {afternoonTasks.length === 0 && (
+            <p className="text-sm text-brand-text-gray">
+              Nenhuma tarefa cadastrada para o período da tarde.
+            </p>
+          )}
           {afternoonTasks.map((task) => {
             return (
               <TaskItem
@@ -142,6 +152,11 @@ const Tasks = () => {
 
         <div className="space-y-3">
           <TaskSeparator tittle="Noite" icon={<MoonIcon />} />
+          {eveningTasks.length === 0 && (
+            <p className="text-sm text-brand-text-gray">
+              Nenhuma tarefa cadastrada para o período da noite.
+            </p>
+          )}
           {eveningTasks.map((task) => {
             return (
               <TaskItem

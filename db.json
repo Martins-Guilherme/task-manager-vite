@@ -1,25 +1,3 @@
 {
-  "tasks": [
-    {
-      "id": "252e8aeb-7676-4d63-8589-320e8bcd87d2",
-      "title": "Minha casa minha vida",
-      "time": "evening",
-      "description": "1",
-      "status": "not_started"
-    },
-    {
-      "id": "3a8d42ba-bb02-437f-bb68-bb8d5c34a0fe",
-      "title": "Teste de cardiaco",
-      "time": "afternoon",
-      "description": "123",
-      "status": "not_started"
-    },
-    {
-      "id": "8adb977b-6900-436e-88bd-b0dd7343ae30",
-      "title": "Tentando dar uma cagada",
-      "time": "morning",
-      "description": "Prestes a explodir",
-      "status": "not_started"
-    }
-  ]
+  "tasks": []
 }

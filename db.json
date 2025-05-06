@@ -1,17 +1,10 @@
 {
   "tasks": [
     {
-      "id": "6139a52f-ed1d-413b-a6e6-7234c31528dc",
-      "title": "casa de festa ",
-      "time": "morning",
-      "description": "uma hora dessas",
-      "status": "not_started"
-    },
-    {
       "id": "d6b5",
-      "title": "teste",
+      "title": "Meu primeiro teste",
       "time": "morning",
-      "description": "minha mae deixa",
+      "description": "Tentar sair vivo o ano de 2025",
       "status": "not_started"
     },
     {
@@ -23,8 +16,8 @@
     },
     {
       "id": "57a0dc1b-33dc-4be1-840f-7f3349661ac1",
-      "title": "Tentnado dar uma cagad ao meio dia",
-      "time": "afternoon",
+      "title": "Tentar dar uma caga ao meio dia",
+      "time": "morning",
       "description": "2",
       "status": "not_started"
     },

@@ -1,13 +1,6 @@
 {
   "tasks": [
     {
-      "id": "d6b5",
-      "title": "Meu primeiro teste",
-      "time": "morning",
-      "description": "Tentar sair vivo o ano de 2025",
-      "status": "not_started"
-    },
-    {
       "id": "252e8aeb-7676-4d63-8589-320e8bcd87d2",
       "title": "Minha casa minha vida",
       "time": "evening",
@@ -15,17 +8,17 @@
       "status": "not_started"
     },
     {
-      "id": "57a0dc1b-33dc-4be1-840f-7f3349661ac1",
-      "title": "Tentar dar uma caga ao meio dia",
-      "time": "morning",
-      "description": "2",
-      "status": "not_started"
-    },
-    {
       "id": "3a8d42ba-bb02-437f-bb68-bb8d5c34a0fe",
       "title": "Teste de cardiaco",
       "time": "afternoon",
       "description": "123",
+      "status": "not_started"
+    },
+    {
+      "id": "8adb977b-6900-436e-88bd-b0dd7343ae30",
+      "title": "Tentando dar uma cagada",
+      "time": "morning",
+      "description": "Prestes a explodir",
       "status": "not_started"
     }
   ]

@@ -1,24 +1,17 @@
 {
   "tasks": [
     {
-      "id": "853b9f13-15c9-4e99-8743-e3dca4bb608f",
-      "title": "não quero mais",
-      "time": "morning",
-      "description": "hoje",
-      "status": "not_started"
-    },
-    {
-      "id": "33e660d4-40be-49c3-8930-03d9079ba579",
-      "title": "Teste 3",
+      "id": "fabc215a-5504-470e-a3e6-bff29b0be14c",
+      "title": "Nova tarefa",
       "time": "afternoon",
-      "description": "Teste 3",
+      "description": "123",
       "status": "not_started"
     },
     {
-      "id": "aa97e9ab-a55c-4777-89d6-fbe0e26931b1",
-      "title": "Teste 2",
-      "time": "evening",
-      "description": "Teste 2",
+      "id": "7d198c6a-a224-46d5-8b76-61a447a018ad",
+      "title": "Primeiro uso exclusivo",
+      "time": "morning",
+      "description": "123",
       "status": "not_started"
     }
   ]

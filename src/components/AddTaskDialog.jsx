@@ -1,10 +1,12 @@
 import './AddTaskDialog.css'
 
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import PropTypes from 'prop-types'
 import { useRef } from 'react'
 import { createPortal } from 'react-dom'
 import { useForm } from 'react-hook-form'
 import { CSSTransition } from 'react-transition-group'
+import { toast } from 'sonner'
 import { v4 } from 'uuid'
 
 import { LoaderCircle } from '../assets/icon/index'
@@ -12,13 +14,22 @@ import Button from './Button'
 import Input from './Input'
 import TimeSelect from './TimeSelect'
 
-const AddTaskDialog = ({
-  isOpen,
-  handleClose,
-  onSubmitSuccess,
-  onSubmitError,
-}) => {
-  const nodeRef = useRef(isOpen)
+const AddTaskDialog = ({ isOpen, handleClose }) => {
+  const queryClient = useQueryClient()
+
+  const { mutate } = useMutation({
+    mutationKey: 'addTask',
+    mutationFn: async (task) => {
+      const response = await fetch('http://localhost:3000/tasks/', {
+        method: 'POST',
+        body: JSON.stringify(task),
+      })
+      if (!response.ok) {
+        throw new Error('Erro ao adicionar a tarefa')
+      }
+      return response.json()
+    },
+  })
 
   const {
     register,
@@ -33,27 +44,32 @@ const AddTaskDialog = ({
     },
   })
 
+  const nodeRef = useRef(isOpen)
+
   const handleSaveClick = async (data) => {
     const task = {
       id: v4(),
       title: data.title.trim(),
       time: data.time,
       description: data.description.trim(),
-      status: 'not_started',
+      status: data?.status || 'not_started',
     }
-    const response = await fetch('http://localhost:3000/tasks/', {
-      method: 'POST',
-      body: JSON.stringify(task),
-    })
-    if (!response.ok) {
-      return onSubmitError()
-    }
-    onSubmitSuccess(task)
-    handleClose()
-    reset({
-      title: '',
-      time: 'morning',
-      description: '',
+
+    mutate(task, {
+      onSuccess: () => {
+        queryClient.setQueryData('tasks', (oldTask) => {
+          return [...oldTask, task]
+        })
+        handleClose()
+        reset({
+          title: '',
+          time: 'morning',
+          description: '',
+        })
+      },
+      onError: () => {
+        toast.error('Error ao adicionar a tarefa!')
+      },
     })
   }
 

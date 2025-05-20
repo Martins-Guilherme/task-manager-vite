@@ -1,25 +1,37 @@
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import PropTypes from 'prop-types'
-import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { toast } from 'sonner'
 
 import { CheckIcon, DetailsIcon, LoaderCircle, TrashIcon } from '../assets/icon'
 import Button from './Button'
 
-const TaskItem = ({ task, handleChekboxClick, onDeleteSuccess }) => {
-  const [deleteIsLoading, setDeleteIsLoading] = useState(false)
+const TaskItem = ({ task, handleChekboxClick }) => {
+  const queryClient = useQueryClient()
+  const { mutate, isPending: deleteIsLoading } = useMutation({
+    mutationKey: ['deleteTask', task.id],
+    mutationFn: async () => {
+      const response = await fetch(`http://localhost:3000/tasks/${task.id}`, {
+        method: 'DELETE',
+      })
+      return response.json()
+    },
+  })
 
   const handleDeleteClick = async () => {
-    setDeleteIsLoading(true)
-    const response = await fetch(`http://localhost:3000/tasks/${task.id}`, {
-      method: 'DELETE',
+    mutate(undefined, {
+      onSuccess: () => {
+        queryClient.setQueryData('tasks', (currentTasks) => {
+          return currentTasks.filter((oldTasks) => {
+            return oldTasks.id != task.id
+          })
+        })
+        toast.success('Tarefa deletada com sucesso!')
+      },
+      onError: () => {
+        toast.error('Error ao deletar a tarefa!')
+      },
     })
-    if (!response.ok) {
-      setDeleteIsLoading(false)
-      return toast.error('Erro ao remover a tarefa, tente novamente.')
-    }
-    onDeleteSuccess(task.id)
-    setDeleteIsLoading(false)
   }
 
   const getStatusClasses = () => {
@@ -86,6 +98,5 @@ TaskItem.propTypes = {
     status: PropTypes.oneOf(['not_started', 'in_progress', 'done']).isRequired,
   }).isRequired,
   handleChekboxClick: PropTypes.func.isRequired,
-  onDeleteSuccess: PropTypes.func.isRequired,
 }
 export default TaskItem

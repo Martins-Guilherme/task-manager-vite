@@ -1,31 +1,17 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { toast } from 'sonner'
 
 import { CheckIcon, DetailsIcon, LoaderCircle, TrashIcon } from '../assets/icon'
+import { useDeleteTasks } from '../hooks/data/use-delete-task'
 import Button from './Button'
 
 const TaskItem = ({ task, handleChekboxClick }) => {
-  const queryClient = useQueryClient()
-  const { mutate, isPending: deleteIsLoading } = useMutation({
-    mutationKey: ['deleteTask', task.id],
-    mutationFn: async () => {
-      const response = await fetch(`http://localhost:3000/tasks/${task.id}`, {
-        method: 'DELETE',
-      })
-      return response.json()
-    },
-  })
+  const { mutate: deleteTask, isPending } = useDeleteTasks(task.id)
 
   const handleDeleteClick = async () => {
-    mutate(undefined, {
+    deleteTask(undefined, {
       onSuccess: () => {
-        queryClient.setQueryData('tasks', (currentTasks) => {
-          return currentTasks.filter((oldTasks) => {
-            return oldTasks.id != task.id
-          })
-        })
         toast.success('Tarefa deletada com sucesso!')
       },
       onError: () => {
@@ -69,12 +55,8 @@ const TaskItem = ({ task, handleChekboxClick }) => {
         {task.title}
       </div>
       <div className="flex items-center gap-2">
-        <Button
-          color="ghost"
-          onClick={handleDeleteClick}
-          disabled={deleteIsLoading}
-        >
-          {deleteIsLoading ? (
+        <Button color="ghost" onClick={handleDeleteClick} disabled={isPending}>
+          {isPending ? (
             <LoaderCircle className="animate-spin text-brand-dark-blue" />
           ) : (
             <TrashIcon className="text-brand-text-gray" />

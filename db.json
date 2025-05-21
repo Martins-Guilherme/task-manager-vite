@@ -1,13 +1,6 @@
 {
   "tasks": [
     {
-      "id": "7d198c6a-a224-46d5-8b76-61a447a018ad",
-      "title": "Primeiro uso exclusivo",
-      "time": "morning",
-      "description": "123",
-      "status": "not_started"
-    },
-    {
       "id": "e6535058-c1d6-44f5-8778-d1334bba21e9",
       "title": "uma tarefa",
       "time": "afternoon",
@@ -19,6 +12,13 @@
       "title": "Hora do rush",
       "time": "evening",
       "description": "213",
+      "status": "not_started"
+    },
+    {
+      "id": "ceed5c92-afeb-480f-b626-fc89f3bd927f",
+      "title": "Nova tarefa",
+      "time": "morning",
+      "description": "1223",
       "status": "not_started"
     }
   ]

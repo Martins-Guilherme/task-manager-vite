@@ -33,7 +33,12 @@ const TaskDetailsPage = () => {
   const { mutate: deleteTask, isPending: deleteTaskIsLoading } =
     useDeleteTasks(taskId)
 
-  const { data: task } = useGetCacheTasks(reset, taskId)
+  const { data: task } = useGetCacheTasks({
+    taskId,
+    onSuccess: (task) => {
+      reset(task)
+    },
+  })
 
   const handleBackPage = () => {
     navigate(-1)

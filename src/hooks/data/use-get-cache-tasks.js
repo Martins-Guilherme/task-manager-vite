@@ -4,7 +4,7 @@ import { api } from '../../lib/axios'
 
 export const useGetCacheTasks = ({ taskId, onSuccess }) => {
   return useQuery({
-    queryKey: ['task', taskId],
+    queryKey: ['tasks', taskId],
     queryFn: async () => {
       const { data: task } = await api.get(`/tasks/${taskId}`)
 

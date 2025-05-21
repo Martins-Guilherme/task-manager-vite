@@ -35,9 +35,7 @@ const TaskDetailsPage = () => {
 
   const { data: task } = useGetCacheTasks({
     taskId,
-    onSuccess: (task) => {
-      reset(task)
-    },
+    onSuccess: reset,
   })
 
   const handleBackPage = () => {

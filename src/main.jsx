@@ -1,4 +1,4 @@
-import './index.css'
+import '../src/index.css'
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import React, { StrictMode } from 'react'
@@ -6,15 +6,20 @@ import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { Toaster } from 'sonner'
 
-import App from './App.jsx'
+import HomePage from './pages/Home.jsx'
 import TaskDetailsPage from './pages/TaskDetails.jsx'
+import TasksPage from './pages/Tasks.jsx'
 
 const queryClient = new QueryClient()
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <App />,
+    element: <HomePage />,
+  },
+  {
+    path: '/tasks',
+    element: <TasksPage />,
   },
   {
     path: '/task/:taskId',

@@ -1,17 +1,10 @@
 import { useQueryClient } from '@tanstack/react-query'
-import { useState } from 'react'
+import { useCallback, useMemo } from 'react'
 import { toast } from 'sonner'
 
-import {
-  AddIcon,
-  CloudSunIcon,
-  MoonIcon,
-  SunIcon,
-  TrashIcon,
-} from '../assets/icon'
+import { CloudSunIcon, MoonIcon, SunIcon } from '../assets/icon'
 import { useGetTasks } from '../hooks/data/use-get-tasks'
-import AddTaskDialog from './AddTaskDialog'
-import Button from './Button'
+import Header from './Header'
 import TaskItem from './TaskItem'
 import TaskSeparator from './TasksSeparator'
 
@@ -19,65 +12,66 @@ const Tasks = () => {
   const queryClient = useQueryClient()
   const { data: tasks } = useGetTasks()
 
-  const [addTaskDialogIsOpen, setAddTaskDialogIsOpen] = useState()
+  const morningTasks = useMemo(
+    () => tasks?.filter((task) => task.time === 'morning') || [],
+    [tasks]
+  )
+  const afternoonTasks = useMemo(
+    () => tasks?.filter((task) => task.time === 'afternoon') || [],
+    [tasks]
+  )
+  const eveningTasks = useMemo(
+    () => tasks?.filter((task) => task.time === 'evening') || [],
+    [tasks]
+  )
 
-  const morningTasks = tasks?.filter((task) => task.time === 'morning')
-  const afternoonTasks = tasks?.filter((task) => task.time === 'afternoon')
-  const eveningTasks = tasks?.filter((task) => task.time === 'evening')
+  const handleTaskChekboxClick = useCallback(
+    (taskId) => {
+      // Usar a query key correta (provavelmente um array) e a forma funcional de setQueryData
+      queryClient.setQueryData(['tasks'], (oldTasks) => {
+        if (!oldTasks) return [] // Lidar com o caso de cache vazio
 
-  const handleDialogClose = () => {
-    setAddTaskDialogIsOpen(false)
-  }
+        return oldTasks.map((task) => {
+          if (task.id !== taskId) {
+            // Usar igualdade estrita
+            return task
+          }
 
-  const handleTaskChekboxClick = (taskId) => {
-    const newTask = tasks.map((task) => {
-      if (task.id != taskId) {
-        return task
-      }
-      if (task.status === 'not_started') {
-        toast.success('Tarefa iniciada com sucesso!')
-        return { ...task, status: 'in_progress' }
-      }
-      if (task.status === 'in_progress') {
-        toast.success('Tarefa finalizada com sucesso!')
-        return { ...task, status: 'done' }
-      }
-      if (task.status === 'done') {
-        toast.success('Tarefa reaberta com sucesso!')
-        return { ...task, status: 'not_started' }
-      }
-      return task
-    })
-    queryClient.setQueryData('tasks', newTask)
-  }
+          let newStatus = task.status
+          let toastMessage = ''
+
+          switch (task.status) {
+            case 'not_started':
+              newStatus = 'in_progress'
+              toastMessage = 'Tarefa iniciada com sucesso!'
+              break
+            case 'in_progress':
+              newStatus = 'done'
+              toastMessage = 'Tarefa finalizada com sucesso!'
+              break
+            case 'done':
+              newStatus = 'not_started'
+              toastMessage = 'Tarefa reaberta com sucesso!'
+              break
+            default:
+              // Status desconhecido, não fazer nada ou logar um erro
+              console.warn(
+                `Status de tarefa desconhecido: ${task.status} para a tarefa ${task.id}`
+              )
+              return task // Retornar a tarefa original
+          }
+
+          toast.success(toastMessage)
+          return { ...task, status: newStatus }
+        })
+      })
+    },
+    [queryClient]
+  )
+
   return (
     <div className="w-full space-y-6 px-8 py-16">
-      <div className="flex w-full justify-between">
-        <div>
-          <span className="text-xs font-semibold text-brand-primary">
-            Minhas tarefas
-          </span>
-          <h2 className="text-xl font-semibold">Minhas tarefas</h2>
-        </div>
-
-        <div className="flex items-center gap-3">
-          <Button color="ghost">
-            <p>Limpar tarefas</p>
-            <TrashIcon />
-          </Button>
-
-          {/* Temos duas formas de setar um estado, uma por função e outra diretamente na linha de código. */}
-          <Button color="primary" onClick={() => setAddTaskDialogIsOpen(true)}>
-            <p>Adicionar tarefa</p>
-            <AddIcon />
-          </Button>
-
-          <AddTaskDialog
-            isOpen={addTaskDialogIsOpen}
-            handleClose={handleDialogClose}
-          />
-        </div>
-      </div>
+      <Header subtitle="Minhas tarefas" title="Minhas tarefas" />
 
       {/* LISTA DE TAREFAS */}
       <div className="bg-white rounded-xl p-6">

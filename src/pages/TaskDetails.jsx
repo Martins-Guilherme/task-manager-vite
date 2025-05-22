@@ -37,8 +37,6 @@ const TaskDetailsPage = () => {
     taskId,
     onSuccess: reset,
   })
-  // tarefa não é atualizada quando eu salvo a task novamente
-  console.log(task)
 
   const handleBackPage = () => {
     navigate(-1)

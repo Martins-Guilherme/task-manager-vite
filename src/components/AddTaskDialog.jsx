@@ -165,7 +165,6 @@ const AddTaskDialog = ({ isOpen, handleClose }) => {
 AddTaskDialog.protoTypes = {
   isOpen: PropTypes.bool.isRequired,
   handleClose: PropTypes.func.isRequired,
-  handleSubmit: PropTypes.func.isRequired,
 }
 
 export default AddTaskDialog

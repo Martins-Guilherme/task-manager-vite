@@ -1,10 +1,11 @@
 import { useQuery } from '@tanstack/react-query'
 
+import { taskQueryKeys } from '../../keys/queries'
 import { api } from '../../lib/axios'
 
 export const useGetCacheTasks = ({ taskId, onSuccess }) => {
   return useQuery({
-    queryKey: ['tasks', taskId],
+    queryKey: taskQueryKeys.getOne(taskId),
     queryFn: async () => {
       const { data: task } = await api.get(`/tasks/${taskId}`)
 

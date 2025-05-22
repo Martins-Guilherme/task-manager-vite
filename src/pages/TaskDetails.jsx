@@ -37,6 +37,8 @@ const TaskDetailsPage = () => {
     taskId,
     onSuccess: reset,
   })
+  // tarefa não é atualizada quando eu salvo a task novamente
+  console.log(task)
 
   const handleBackPage = () => {
     navigate(-1)
@@ -76,7 +78,7 @@ const TaskDetailsPage = () => {
               <ArrowLeftIcon />
             </button>
             <div className="flex items-center gap-1 text-xs">
-              <Link to="/" className="text-brand-text-gray">
+              <Link to="/tasks" className="text-brand-text-gray">
                 Minhas tarefas
               </Link>
               <ChevronRightIcon className="text-brand-text-gray" />

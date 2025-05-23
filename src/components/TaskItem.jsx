@@ -4,21 +4,12 @@ import { toast } from 'sonner'
 
 import { CheckIcon, DetailsIcon, LoaderCircle, TrashIcon } from '../assets/icon'
 import { useDeleteTasks } from '../hooks/data/use-delete-task'
+import { useUpdateTask } from '../hooks/data/use-update-task'
 import Button from './Button'
 
-const TaskItem = ({ task, handleChekboxClick }) => {
+const TaskItem = ({ task }) => {
   const { mutate: deleteTask, isPending } = useDeleteTasks(task.id)
-
-  const handleDeleteClick = async () => {
-    deleteTask(undefined, {
-      onSuccess: () => {
-        toast.success('Tarefa deletada com sucesso!')
-      },
-      onError: () => {
-        toast.error('Error ao deletar a tarefa!')
-      },
-    })
-  }
+  const { mutate: updateTask } = useUpdateTask(task.id)
 
   const getStatusClasses = () => {
     if (task.status === 'done') {
@@ -32,6 +23,43 @@ const TaskItem = ({ task, handleChekboxClick }) => {
     }
     return 'bg-brand-dark-blue'
   }
+
+  const handleDeleteClick = async () => {
+    deleteTask(undefined, {
+      onSuccess: () => {
+        toast.success('Tarefa deletada com sucesso!')
+      },
+      onError: () => {
+        toast.error('Error ao deletar a tarefa!')
+      },
+    })
+  }
+
+  const getNewStatus = () => {
+    if (task.status === 'not_started') {
+      return 'in_progress'
+    }
+    if (task.status === 'in_progress') {
+      return 'done'
+    }
+    return 'not_started'
+  }
+
+  const handleChekboxClick = () => {
+    updateTask(
+      {
+        status: getNewStatus(),
+      },
+      {
+        onSuccess: () => {
+          toast.success('Tarefa atualizada com sucesso!')
+        },
+        onError: () => {
+          toast.error('Error ao atualizar a tarefa!')
+        },
+      }
+    )
+  }
   return (
     <div
       className={`item-center rounde-lg flex justify-between gap-2 bg-opacity-10 px-4 py-3 text-sm transition ${getStatusClasses()}`}
@@ -44,7 +72,7 @@ const TaskItem = ({ task, handleChekboxClick }) => {
             type="checkbox"
             checked={task.status === 'done'}
             className="absolute h-full w-full cursor-pointer opacity-0"
-            onChange={() => handleChekboxClick(task.id)}
+            onChange={handleChekboxClick}
           />
 
           {task.status === 'done' && <CheckIcon />}

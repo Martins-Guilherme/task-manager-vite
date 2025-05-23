@@ -1,16 +1,12 @@
-import { useQueryClient } from '@tanstack/react-query'
 import { useMemo } from 'react'
-import { toast } from 'sonner'
 
 import { CloudSunIcon, MoonIcon, SunIcon } from '../assets/icon'
 import { useGetTasks } from '../hooks/data/use-get-tasks'
-import { taskQueryKeys } from '../keys/queries'
 import Header from './Header'
 import TaskItem from './TaskItem'
 import TaskSeparator from './TasksSeparator'
 
 const Tasks = () => {
-  const queryClient = useQueryClient()
   const { data: tasks } = useGetTasks()
 
   const morningTasks = useMemo(
@@ -26,27 +22,6 @@ const Tasks = () => {
     [tasks]
   )
 
-  const handleTaskChekboxClick = (taskId) => {
-    const newTask = tasks.map((task) => {
-      if (task.id != taskId) {
-        return task
-      }
-      if (task.status === 'not_started') {
-        toast.success('Tarefa iniciada com sucesso!')
-        return { ...task, status: 'in_progress' }
-      }
-      if (task.status === 'in_progress') {
-        toast.success('Tarefa finalizada com sucesso!')
-        return { ...task, status: 'done' }
-      }
-      if (task.status === 'done') {
-        toast.success('Tarefa reaberta com sucesso!')
-        return { ...task, status: 'not_started' }
-      }
-      return task
-    })
-    queryClient.setQueryData(taskQueryKeys.getAll(), newTask)
-  }
   return (
     <div className="w-full space-y-6 px-8 py-16">
       <Header title="Minhas Tarefas" subtitle="Tarefas" />
@@ -60,13 +35,7 @@ const Tasks = () => {
             </p>
           )}
           {morningTasks?.map((task) => {
-            return (
-              <TaskItem
-                key={task.id}
-                task={task}
-                handleChekboxClick={handleTaskChekboxClick}
-              />
-            )
+            return <TaskItem key={task.id} task={task} />
           })}
         </div>
 
@@ -78,13 +47,7 @@ const Tasks = () => {
             </p>
           )}
           {afternoonTasks?.map((task) => {
-            return (
-              <TaskItem
-                key={task.id}
-                task={task}
-                handleChekboxClick={handleTaskChekboxClick}
-              />
-            )
+            return <TaskItem key={task.id} task={task} />
           })}
         </div>
 
@@ -96,13 +59,7 @@ const Tasks = () => {
             </p>
           )}
           {eveningTasks?.map((task) => {
-            return (
-              <TaskItem
-                key={task.id}
-                task={task}
-                handleChekboxClick={handleTaskChekboxClick}
-              />
-            )
+            return <TaskItem key={task.id} task={task} />
           })}
         </div>
       </div>

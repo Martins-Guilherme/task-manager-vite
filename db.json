@@ -5,21 +5,21 @@
       "title": "uma bacaAnal",
       "time": "afternoon",
       "description": "123",
-      "status": "not_started"
+      "status": "done"
     },
     {
       "id": "8fca649f-ee67-4166-b074-122bacf069a4",
       "title": "Virada de ano 22",
       "time": "evening",
       "description": "Já disse que não",
-      "status": "not_started"
+      "status": "in_progress"
     },
     {
       "id": "56c1777e-ac9f-4cb5-9580-1e4bb73772ae",
       "title": "Nova tarefa",
       "time": "morning",
       "description": "1223",
-      "status": "not_started"
+      "status": "in_progress"
     }
   ]
 }

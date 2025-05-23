@@ -1,9 +1,10 @@
 import { useQueryClient } from '@tanstack/react-query'
-import { useCallback, useMemo } from 'react'
+import { useMemo } from 'react'
 import { toast } from 'sonner'
 
 import { CloudSunIcon, MoonIcon, SunIcon } from '../assets/icon'
 import { useGetTasks } from '../hooks/data/use-get-tasks'
+import { taskQueryKeys } from '../keys/queries'
 import Header from './Header'
 import TaskItem from './TaskItem'
 import TaskSeparator from './TasksSeparator'
@@ -25,54 +26,30 @@ const Tasks = () => {
     [tasks]
   )
 
-  const handleTaskChekboxClick = useCallback(
-    (taskId) => {
-      // Usar a query key correta (provavelmente um array) e a forma funcional de setQueryData
-      queryClient.setQueryData(['tasks'], (oldTasks) => {
-        if (!oldTasks) return [] // Lidar com o caso de cache vazio
-
-        return oldTasks.map((task) => {
-          if (task.id !== taskId) {
-            // Usar igualdade estrita
-            return task
-          }
-
-          let newStatus = task.status
-          let toastMessage = ''
-
-          switch (task.status) {
-            case 'not_started':
-              newStatus = 'in_progress'
-              toastMessage = 'Tarefa iniciada com sucesso!'
-              break
-            case 'in_progress':
-              newStatus = 'done'
-              toastMessage = 'Tarefa finalizada com sucesso!'
-              break
-            case 'done':
-              newStatus = 'not_started'
-              toastMessage = 'Tarefa reaberta com sucesso!'
-              break
-            default:
-              // Status desconhecido, não fazer nada ou logar um erro
-              console.warn(
-                `Status de tarefa desconhecido: ${task.status} para a tarefa ${task.id}`
-              )
-              return task // Retornar a tarefa original
-          }
-
-          toast.success(toastMessage)
-          return { ...task, status: newStatus }
-        })
-      })
-    },
-    [queryClient]
-  )
-
+  const handleTaskChekboxClick = (taskId) => {
+    const newTask = tasks.map((task) => {
+      if (task.id != taskId) {
+        return task
+      }
+      if (task.status === 'not_started') {
+        toast.success('Tarefa iniciada com sucesso!')
+        return { ...task, status: 'in_progress' }
+      }
+      if (task.status === 'in_progress') {
+        toast.success('Tarefa finalizada com sucesso!')
+        return { ...task, status: 'done' }
+      }
+      if (task.status === 'done') {
+        toast.success('Tarefa reaberta com sucesso!')
+        return { ...task, status: 'not_started' }
+      }
+      return task
+    })
+    queryClient.setQueryData(taskQueryKeys.getAll(), newTask)
+  }
   return (
     <div className="w-full space-y-6 px-8 py-16">
-      <Header subtitle="Minhas tarefas" title="Minhas tarefas" />
-
+      <Header title="Minhas Tarefas" subtitle="Tarefas" />
       {/* LISTA DE TAREFAS */}
       <div className="bg-white rounded-xl p-6">
         <div className="space-y-3">

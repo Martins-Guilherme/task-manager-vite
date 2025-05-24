@@ -23,7 +23,7 @@ const Tasks = () => {
   )
 
   return (
-    <div className="w-full space-y-6 px-8 py-16">
+    <div className="w-full space-y-6 px-8 py-8">
       <Header title="Minhas Tarefas" subtitle="Tarefas" />
       {/* LISTA DE TAREFAS */}
       <div className="bg-white rounded-xl p-6">

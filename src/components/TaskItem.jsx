@@ -11,6 +11,7 @@ const TaskItem = ({ task }) => {
   const { mutate: deleteTask, isPending } = useDeleteTasks(task.id)
   const { mutate: updateTask } = useUpdateTask(task.id)
 
+  // Adicionar nessa função o Tailwind Variants para retornar a classe automaticamente.
   const getStatusClasses = () => {
     if (task.status === 'done') {
       return 'bg-brand-primary text-brand-primary'
@@ -19,7 +20,7 @@ const TaskItem = ({ task }) => {
       return 'bg-brand-process text-brand-process'
     }
     if (task.status === 'not_started') {
-      return 'bg-brand-dark-blue bg-opacity-10 text-brand-dark-blue'
+      return 'bg-brand-dark-blue bg-opacity-5 text-brand-dark-blue'
     }
     return 'bg-brand-dark-blue'
   }
@@ -107,6 +108,5 @@ TaskItem.propTypes = {
     time: PropTypes.oneOf(['morning', 'afternoon', 'evening']).isRequired,
     status: PropTypes.oneOf(['not_started', 'in_progress', 'done']).isRequired,
   }).isRequired,
-  handleChekboxClick: PropTypes.func.isRequired,
 }
 export default TaskItem
